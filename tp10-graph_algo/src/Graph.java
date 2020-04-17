@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Graph {
 	private Integer[] peeks;
-	private List<LinkedList<Integer>> graph;
+	private List<ArcNoPond> graph;
 
 
 
@@ -16,16 +16,12 @@ public class Graph {
 	public Graph(int n, int edge) {
 		this.peeks = new Integer[n];
 		this.graph = new ArrayList<>();
-
-
 		for (int i = 0; i < n; i++) {
 			this.peeks[i] = i;
-			this.graph.add(new LinkedList<Integer>());
 		}//for
-
 		createArc(n, edge);
-
 	}//construct
+
 
 	/*			GETTER				*/
 
@@ -33,7 +29,7 @@ public class Graph {
 		return peeks;
 	}
 
-	public List<LinkedList<Integer>> getGraph() {
+	public List<ArcNoPond> getGraph() {
 		return graph;
 	}
 
@@ -55,10 +51,12 @@ public class Graph {
 			while (target == source) {
 				target = rand.nextInt(n);
 			}
-			if (!arcExist(source, target))
-				this.graph.get(source).add(target);
+			ArcNoPond arc = new ArcNoPond(source, target);
+			if (!arcExist(arc))
+				this.graph.add(arc);
 			else --i;
 		}//for
+		this.graph.sort(Arc::compareTo);
 	}//createArc
 
 	public void toStr() {
@@ -70,8 +68,8 @@ public class Graph {
 		System.out.println(str);
 	}//printer
 
-	private boolean arcExist(int s, int t) {
-		return this.graph.get(s).contains(t);
+	private boolean arcExist(ArcNoPond arc) {
+		return this.graph.contains(arc);
 	}
 
 
