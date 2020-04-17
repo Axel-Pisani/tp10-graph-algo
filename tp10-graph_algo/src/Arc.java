@@ -1,30 +1,29 @@
-public class Arc implements Comparable{
+public abstract class Arc implements Comparable{
+    private final int source;
+    private final int target;
 
-	private final int source;
-	private final int target;
-	private final int weight;
+    public Arc(int source, int target) {
+        this.source = source;
+        this.target = target;
+    }//constructor
 
-	public Arc(int source, int target, int weight) {
-		this.source = source;
-		this.target = target;
-		this.weight = weight;
-	}//constructor
+    public int getSource() {
+        return source;
+    }
 
-	public int getSource() {
-		return source;
-	}
+    public int getTarget() {
+        return target;
+    }
 
-	public int getTarget() {
-		return target;
-	}
-
-	public int getWeight() {
-		return weight;
-	}
-
-
-	@Override
-	public int compareTo(Object o) {
-		return Integer.compare(this.getSource(), ((Arc) o).getSource());
-	}
+    @Override
+    public String toString() {
+        return "Arc{" +
+                "source=" + source +
+                ", target=" + target +
+                '}';
+    }
+    @Override
+    public int compareTo(Object o) {
+        return Integer.compare(this.getSource(), ((Arc) o).getSource());
+    }
 }//class
