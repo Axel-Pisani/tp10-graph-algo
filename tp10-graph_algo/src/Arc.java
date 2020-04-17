@@ -1,8 +1,8 @@
-public class Arc {
+public class Arc implements Comparable{
 
-	private int source;
-	private int target;
-	private int weight;
+	private final int source;
+	private final int target;
+	private final int weight;
 
 	public Arc(int source, int target, int weight) {
 		this.source = source;
@@ -20,5 +20,11 @@ public class Arc {
 
 	public int getWeight() {
 		return weight;
+	}
+
+
+	@Override
+	public int compareTo(Object o) {
+		return Integer.compare(this.getSource(), ((Arc) o).getSource());
 	}
 }//class
