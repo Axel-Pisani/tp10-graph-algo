@@ -5,23 +5,23 @@ import java.util.Random;
 public class GraphPond {
 
 
-    private Integer[] peeksPond;
+    private ArrayList<Integer> peeksPond;
     private List<ArcPond> graphPond;
 
     public GraphPond(int n , int edge) {
 
-        this.peeksPond = new Integer[n];
+        this.peeksPond = new ArrayList<>(n);
         this.graphPond = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            this.peeksPond[i] = i;
+            this.peeksPond.set(i,i);
         }//for
 
         createArcPond(n, edge);
     }
 
 
-    public Integer[] getPeeksPond() {
+    public ArrayList<Integer> getPeeksPond() {
         return peeksPond;
     }
 

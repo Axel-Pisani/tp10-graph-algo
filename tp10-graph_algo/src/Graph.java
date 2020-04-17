@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Graph {
-	private Integer[] peeks;
+	private ArrayList<Integer> peeks;
 	private List<ArcNoPond> graph;
 
 
@@ -14,10 +14,10 @@ public class Graph {
 	 * @param edge : edge number of the graph
 	 * */
 	public Graph(int n, int edge) {
-		this.peeks = new Integer[n];
+		this.peeks = new ArrayList<>(n);
 		this.graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
-			this.peeks[i] = i;
+			this.peeks.set(i,i);
 		}//for
 		createArc(n, edge);
 	}//construct
@@ -25,7 +25,7 @@ public class Graph {
 
 	/*			GETTER				*/
 
-	public Integer[] getSommets() {
+	public ArrayList<Integer> getSommets() {
 		return peeks;
 	}
 
@@ -33,9 +33,6 @@ public class Graph {
 		return graph;
 	}
 
-	public Integer[] getPeeks() {
-		return peeks;
-	}
 
 
 	/*			Graph Non Pond				*/
