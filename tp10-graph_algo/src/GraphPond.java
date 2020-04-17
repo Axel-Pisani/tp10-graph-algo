@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -55,6 +56,7 @@ public class GraphPond {
                 newArc = null;
             }
         }//for
+        this.graphPond.sort(Arc::compareTo);
     }//createArc
 
     private boolean arcPondExist(ArcPond arcPond) {
@@ -64,18 +66,15 @@ public class GraphPond {
 
     public void toStrPond() {
         String str = "GraphPond { \n";
-        for (int i = 0; i < this.graphPond.size(); ++i) {
-            str += i + " " +
+        for (ArcPond arcPond : this.graphPond)
+            str += " " +
                     "[" +
-                    "s(" + this.graphPond.get(i).getSource() + "), " +
-                    "t(" + this.graphPond.get(i).getTarget() + "), " +
-                    "w(" + this.graphPond.get(i).getWeight() + ")" +
+                    "s(" + arcPond.getSource() + "), " +
+                    "t(" + arcPond.getTarget() + "), " +
+                    "w(" + arcPond.getWeight() + ")" +
                     "]\n";
-        }//for
         str += "}";
         System.out.println(str);
     }//printer
-
-
 
 }
