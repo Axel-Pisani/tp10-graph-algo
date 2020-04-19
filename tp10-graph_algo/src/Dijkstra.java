@@ -9,17 +9,28 @@ public class Dijkstra {
 
 		this.graph = graph;
 		this.simpleQueue = graph.getPeeksPond();
-		d = new ArrayList<>(simpleQueue.size());
+		d = new ArrayList<>();
+
+		makeDijkstra(0);
 	}
 
 	public ArrayList<Integer> makeDijkstra(Integer s){
-		d.set(s,0);
+		for (int i = 0; i <this.simpleQueue.size() ; i++) {
+			this.d.add(i,10000000);
+		}
+		this.d.set(s,0);
 		while(simpleQueue.size() != 0 ){
 			Integer u = exctractMin();
+			for (Integer v : this.graph.getVoisins(u)
+				 ) {
+				if( this.d.get(v) > this.d.get(u) + this.graph.getWeightOfAnArc(u,v)  ){
+					this.d.set(v,this.d.get(u)+ this.graph.getWeightOfAnArc(u,v)) ;
+				}
+			}
 		
 		}
 
-
+		System.out.println(this.d);
 		return this.d;
 	}
 

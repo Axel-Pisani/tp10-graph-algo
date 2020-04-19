@@ -14,7 +14,7 @@ public class GraphPond {
         this.graphPond = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            this.peeksPond.set(i,i);
+            this.peeksPond.add(i);
         }//for
 
         createArcPond(n, edge);
@@ -75,4 +75,21 @@ public class GraphPond {
         System.out.println(str);
     }//printer
 
+
+    public Integer getWeightOfAnArc(Integer u ,  Integer v){
+        for (ArcPond a: this.graphPond
+             ) {
+            if(a.getSource() == u && a.getTarget() == v)return a.getWeight();
+        }
+        return 0;
+    }
+
+    public ArrayList<Integer> getVoisins(Integer i){
+        ArrayList<Integer> voisins = new ArrayList<>();
+        for (ArcPond a: this.graphPond) {
+            if(a.getSource() == i)
+                voisins.add(a.getTarget());
+        }
+        return voisins;
+    }
 }
