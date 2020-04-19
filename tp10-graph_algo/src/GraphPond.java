@@ -58,8 +58,13 @@ public class GraphPond {
         this.graphPond.sort(Arc::compareTo);
     }//createArc
 
-    private boolean arcPondExist(ArcPond arcPond) {
-        return this.graphPond.contains(arcPond);
+    public boolean arcPondExist(ArcPond arcPond) {
+        for (ArcPond arc: this.graphPond) {
+            if (arcPond.getTarget() == arc.getTarget() &&
+                arcPond.getSource() == arc.getSource())
+                return true;
+        }
+        return false;
     }
 
     public void toStrPond() {
@@ -77,9 +82,8 @@ public class GraphPond {
 
 
     public Integer getWeightOfAnArc(Integer u ,  Integer v){
-        for (ArcPond a: this.graphPond
-             ) {
-            if(a.getSource() == u && a.getTarget() == v)return a.getWeight();
+        for (ArcPond a: this.graphPond) {
+            if(a.getSource() == u && a.getTarget() == v) return a.getWeight();
         }
         return 0;
     }
